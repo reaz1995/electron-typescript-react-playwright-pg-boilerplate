@@ -1,0 +1,81 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "app",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "npm-run-all -p dev:react electron:serve",
+    "dev:electron": "cross-env NODE_ENV=development webpack --config webpack/electron.webpack.ts --mode=development && npm run start:electron",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack/react.webpack.ts --mode=development",
+    "electron:serve": "wait-on http-get://localhost:4000/ && npm run dev:electron",
+    "start:electron": "electron .",
+    "build": "npm-run-all build:electron build:react",
+    "build:run": "npm-run-all build start:electron",
+    "build:electron": "webpack --config webpack/electron.webpack.ts --mode=production",
+    "build:react": "webpack --config webpack/react.webpack.ts --mode=production",
+    "package": "npm-run-all build package:dist",
+    "package:dist": "electron-builder --dir -w"
+  },
+  "keywords": [],
+  "author": "HelloSoftware",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.1.0",
+    "pg": "^8.7.1",
+    "pg-native": "^3.0.0",
+    "playwright": "^1.16.3",
+    "puppeteer-extra-plugin-stealth": "^2.9.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-pro-sidebar": "^0.7.1",
+    "react-router-dom": "^6.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@types/node": "^16.11.7",
+    "@types/pg": "^8.6.1",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@types/webpack-dev-server": "^4.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "electron": "^15.3.1",
+    "electron-build": "^0.0.3",
+    "electron-builder": "^22.13.1",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.27.0",
+    "html-webpack-plugin": "^5.5.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4",
+    "wait-on": "^6.0.0",
+    "webpack": "^5.64.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  },
+  "build": {
+    "appId": "com.company.app",
+    "productName": "App Name",
+    "mac": {
+      "category": "public.app-category.video"
+    },
+    "directories": {
+      "output": "packages"
+    },
+    "files": [
+      "package.json",
+      "dist/**"
+    ]
+  }
+}
