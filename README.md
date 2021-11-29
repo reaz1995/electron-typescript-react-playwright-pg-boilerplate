@@ -22,7 +22,7 @@ Development on Windows
 
 - [Nodejs](https://nodejs.org/en/download/) >= 16.x
 - [Nodejs](https://github.com/npm/cli)
-- [postgressql](https://www.postgresql.org/download/windows/) v.16.x.x +
+- [postgressql](https://www.postgresql.org/download/windows/) 
 
 Development on Windows with WSL (Ubuntu)
 
